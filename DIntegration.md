@@ -28,7 +28,6 @@ torch.utils.data.DataLoader中的pin_memory属性
 pin_memory (bool, optional): If True, the data loader will copy tensors into CUDA pinned memory before  returning them.
 ```
 通常情况下，由于虚拟内存技术的存在，数据要么在内存中以锁页（“pinned”）的方式存在，要么保存在虚拟内存（磁盘）中。而cuda只接受锁页内存传入，所以在声明新的dataloader对象时，直接令其保存在锁页内存中，后续即可快速传入cuda。否则，数据需要从虚拟内存中先传入锁页内存，再传入cuda，速度将大大增加。其缺点是对于内存的大小要求较高。
-![pm](./image/pm.png)
 ### 预处理位置
 从cache 或者 dataset file导入数据
 如果使用分布式训练Make sure only the first process in distributed training process the dataset, and the others will use the cache
